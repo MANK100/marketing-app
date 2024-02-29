@@ -147,6 +147,8 @@ st.set_page_config(page_title="Marketing Tool",
                     initial_sidebar_state='collapsed')
 st.header("I am a Markrting Assistant(MK-AI), How can I help you?")
 
+st.image('sunrise.jpg', caption='Raise the BAR !!!!!')
+
 form_input = st.text_area('Enter text for Marketing Material reqiurement....', height=275)
 
 tasktype_option = st.selectbox(
