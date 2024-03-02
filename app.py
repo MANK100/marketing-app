@@ -8,7 +8,7 @@ from langchain.prompts import FewShotPromptTemplate
 from langchain.prompts.example_selector import LengthBasedExampleSelector
 from dotenv import load_dotenv
 
-os.environ["OPENAI_API_KEY"] = "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" 
+#os.environ["OPENAI_API_KEY"] = "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" 
 
 load_dotenv()
 
