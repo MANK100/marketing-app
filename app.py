@@ -1,13 +1,14 @@
 import streamlit as st
 import os
 #from langchain.llms import OpenAI #this import has been replaced by the below recently please :)
-from langchain_openai import OpenAI
+from langchain.llms import OpenAI
 
 from langchain.prompts import PromptTemplate
 from langchain.prompts import FewShotPromptTemplate
 from langchain.prompts.example_selector import LengthBasedExampleSelector
 from dotenv import load_dotenv
 
+os.environ["OPENAI_API_KEY"] = "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" 
 
 load_dotenv()
 
