@@ -173,7 +173,7 @@ st.set_page_config(page_title="Marketing Tool",
                     layout='centered',
                     initial_sidebar_state='collapsed')
 st.header("AI Assistant(Develoed by Maneesh Kale), How can I help you?")
-st.image('ai.jpg', width = 50, caption='')
+st.image('ai.jpg', width = 200, caption='')
 form_input = st.text_area('Enter text query....', height=50)
 
 tasktype_option = st.selectbox(
