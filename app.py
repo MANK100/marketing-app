@@ -172,9 +172,9 @@ st.set_page_config(page_title="Marketing Tool",
                     page_icon='✅',
                     layout='centered',
                     initial_sidebar_state='collapsed')
-st.header("I am a Markrting Assistant(MK-AI), How can I help you?")
+st.header("AI Assistant(Develoed by Maneesh Kale), How can I help you?")
 
-form_input = st.text_area('Enter text for Marketing Material reqiurement....', height=70)
+form_input = st.text_area('Enter text query....', height=50)
 
 tasktype_option = st.selectbox(
     'Please select the action to be performed?',
