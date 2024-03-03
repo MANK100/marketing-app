@@ -1,21 +1,47 @@
 import streamlit as st
 import os
 #from langchain.llms import OpenAI #this import has been replaced by the below recently please :)
-from langchain.llms import OpenAI
+from langchain_openai import OpenAI
 
 from langchain.prompts import PromptTemplate
 from langchain.prompts import FewShotPromptTemplate
 from langchain.prompts.example_selector import LengthBasedExampleSelector
+
+## Azure key-vault secrete 
+from azure.identity import ClientSecretCredential
+from azure.keyvault.secrets import SecretClient
 from dotenv import load_dotenv
 
-#os.environ["OPENAI_API_KEY"] = "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" 
 
 load_dotenv()
 
+client_id = os.environ['AZURE_CLIENT_ID']
+tenant_id = os.environ['AZURE_TENANT_ID']
+client_secret = os.environ['AZURE_CLIENT_SECRET']
+vault_url = os.environ["AZURE_VAULT_URL"]
+secret_name = "OpenAi-Key"
+
+# create a credential 
+credentials = ClientSecretCredential(
+    client_id = client_id, 
+    client_secret= client_secret,
+    tenant_id= tenant_id
+)
+
+# create a secret client object
+secret_client = SecretClient(vault_url= vault_url, credential= credentials)
+
+# retrieve the secret value from key vault
+
+secret = secret_client.get_secret(secret_name)
+
+API_KEY = secret.value
+
+os.environ["OPENAI_API_KEY"] = API_KEY
+
 def getLLMResponse(query,age_option,tasktype_option):
     # 'text-davinci-003' model is depreciated now, so we are using the openai's recommended model
-    llm = OpenAI(temperature=.9, model="gpt-3.5-turbo-instruct")
-
+    llm = OpenAI(temperature=.9,model="gpt-3.5-turbo-instruct")
     if age_option=="Kid": #Silly and Sweet Kid 
 
         examples = [
@@ -146,10 +172,9 @@ st.set_page_config(page_title="Marketing Tool",
                     page_icon='✅',
                     layout='centered',
                     initial_sidebar_state='collapsed')
-st.header("I am a Markrting Assistant(MANEESH-AI), How can I help you?")
+st.header("I am a Markrting Assistant(MK-AI), How can I help you?")
 
-
-form_input = st.text_area('Enter text for Marketing Material reqiurement....', height=50)
+form_input = st.text_area('Enter text for Marketing Material reqiurement....', height=70)
 
 tasktype_option = st.selectbox(
     'Please select the action to be performed?',
