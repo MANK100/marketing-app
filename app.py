@@ -36,7 +36,7 @@ secret_client = SecretClient(vault_url= vault_url, credential= credentials)
 secret = secret_client.get_secret(secret_name)
 
 API_KEY = secret.value
-
+    
 os.environ["OPENAI_API_KEY"] = API_KEY
 
 def getLLMResponse(query,age_option,tasktype_option):
@@ -190,5 +190,3 @@ submit = st.button("Generate")
 
 if submit:
     st.write(getLLMResponse(form_input,age_option,tasktype_option))
-
-
